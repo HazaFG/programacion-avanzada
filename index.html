@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hola estamos programando</title>
+</head>
+<body>
+    <h1>Programando en el salon</h1>
+
+
+    <canvas id="my_canvas" width="500" height="500"></canvas>
+
+    <script type="text/javascript">
+        const my_canvas = document.getElementById('my_canvas')
+        const ctx = my_canvas.getContext('2d')
+
+
+        ctx.fillStyle = "Red"
+        ctx.fillRect(100, 100, 100, 100)
+
+        ctx.fillStyle = "Blue"
+        ctx.fillRect(180, 180, 100, 100)
+
+        ctx.fillStyle = "rgba(255, 180, 120, 0.5)"
+        ctx.fillRect(260, 260, 100, 100)
+    </script>
+    <script src="validaciones.js"></script>
+</body>
+</html>
