@@ -16,20 +16,20 @@
         const my_canvas = document.getElementById('my_canvas')
         const ctx = my_canvas.getContext('2d')
 
-        ctx.strokeRect(20, 20, 100,100)
+        // ctx.strokeRect(20, 20, 100,100)
 
-        ctx.lineWidth = 4
-        ctx.strokeStyle = "Red"
-        ctx.strokeRect(340, 340, 100,100)
+        // ctx.lineWidth = 4
+        // ctx.strokeStyle = "Red"
+        // ctx.strokeRect(340, 340, 100,100)
 
-        ctx.fillStyle = "Red"
-        ctx.fillRect(100, 100, 100, 100)
+        // ctx.fillStyle = "Red"
+        // ctx.fillRect(100, 100, 100, 100)
 
-        ctx.fillStyle = "Blue"
-        ctx.fillRect(180, 180, 100, 100)
+        // ctx.fillStyle = "Blue"
+        // ctx.fillRect(180, 180, 100, 100)
 
-        ctx.fillStyle = "rgba(255, 180, 120, 0.5)"
-        ctx.fillRect(260, 260, 100, 100)
+        // ctx.fillStyle = "rgba(255, 180, 120, 0.5)"
+        // ctx.fillRect(260, 260, 100, 100)
 
 
         // ctx.beginPath()
@@ -85,13 +85,15 @@
 
 
         // // Create Gradient
-        // const my_gradient = ctx.createLinearGradient(50, 50, 0, 170);
-        // my_gradient.addColorStop(0, "black");
-        // my_gradient.addColorStop(1, "white");
+        const x = ctx.createLinearGradient(0, 0, 90, 200);
+        x.addColorStop(0, "black");
+        x.addColorStop(1, "red");
+        ctx.fillStyle = x;
+        ctx.fillRect(20, 20, 150, 100);
 
-        // // Fill Rectangle
-        // ctx.fillStyle = my_gradient;
-        // ctx.fillRect(600, 20, 150, 100);
+        // Fill Rectangle
+        ctx.fillStyle = my_gradient;
+        ctx.fillRect(600, 20, 150, 100);
 
 
 
