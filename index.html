@@ -84,16 +84,28 @@
         ctx.stroke();
 
 
-        // // Create Gradient
-        const x = ctx.createLinearGradient(0, 0, 90, 200);
-        x.addColorStop(0, "black");
-        x.addColorStop(1, "red");
-        ctx.fillStyle = x;
-        ctx.fillRect(20, 20, 150, 100);
+        // Create Gradient
+        // const x = ctx.createLinearGradient(0, 0, 90, 200);
+        // x.addColorStop(0, "black");
+        // x.addColorStop(1, "red");
+        // ctx.fillStyle = x;
+        // ctx.fillRect(20, 20, 150, 100);
 
         // Fill Rectangle
-        ctx.fillStyle = my_gradient;
-        ctx.fillRect(600, 20, 150, 100);
+        // ctx.fillStyle = my_gradient;
+        // ctx.fillRect(600, 20, 150, 100);
+
+        //Creamos nuestro radial
+        const gradient = ctx.createRadialGradient(70, 100, 30, 100, 100, 70);
+
+        // Add three color stops
+        gradient.addColorStop(0, "orange");
+        gradient.addColorStop(1, "green");
+
+        // Set the fill style and draw a rectangle
+        ctx.fillStyle = gradient;
+        ctx.fillRect(20, 20, 160, 160);
+        
 
 
 
