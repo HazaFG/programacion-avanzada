@@ -105,6 +105,16 @@
         // Set the fill style and draw a rectangle
         ctx.fillStyle = gradient;
         ctx.fillRect(20, 20, 160, 160);
+
+        let imagen = new Image();
+        imagen.src = "nate.png";
+
+        // Asegúrate de que la imagen esté cargada antes de dibujarla
+        imagen.onload = function() {
+            ctx.drawImage(imagen, 10, 10);
+        };
+
+
         
 
 
