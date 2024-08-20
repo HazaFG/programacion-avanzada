@@ -47,28 +47,28 @@
         ctx.fill()
 
 
-        // ctx.font = "50px serif";
-        // ctx.strokeStyle = "red"
-        // ctx.strokeText("Hello world", 210, 90, 290)
+        ctx.font = "50px serif";
+        ctx.strokeStyle = "red"
+        ctx.strokeText("Hello world", 410, 90, 290)
 
-        // ctx.strokeStyle = "green"
-        // ctx.strokeText("Hello world", 215, 100, 290);
+        ctx.strokeStyle = "green"
+        ctx.strokeText("Hello world", 415, 100, 290);
 
         ctx.beginPath();
         ctx.arc(500, 500, 50, 0, 2 * Math.PI);
         ctx.stroke();
 
-        ctx.strokeStyle = "white"
+        ctx.strokeStyle = "black"
         ctx.beginPath();
         ctx.arc(500, 500, 30, 0, 1 * Math.PI);
         ctx.stroke();
 
-        ctx.strokeStyle = "white"
+        ctx.strokeStyle = "black"
         ctx.beginPath();
         ctx.arc(520, 480, 10, 0, 2 * Math.PI);
         ctx.stroke();
 
-        ctx.strokeStyle = "white"
+        ctx.strokeStyle = "black"
         ctx.beginPath();
         ctx.arc(480, 480, 10, 0, 2 * Math.PI);
         ctx.stroke();
@@ -82,6 +82,16 @@
         ctx.beginPath();
         ctx.arc(480, 480, 2, 0, 2 * Math.PI);
         ctx.stroke();
+
+
+        // // Create Gradient
+        // const my_gradient = ctx.createLinearGradient(50, 50, 0, 170);
+        // my_gradient.addColorStop(0, "black");
+        // my_gradient.addColorStop(1, "white");
+
+        // // Fill Rectangle
+        // ctx.fillStyle = my_gradient;
+        // ctx.fillRect(600, 20, 150, 100);
 
 
 
