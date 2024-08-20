@@ -10,7 +10,7 @@
     <h1>Programando en el salon</h1>
 
 
-    <canvas id="my_canvas" width="500" height="500"></canvas>
+    <canvas id="my_canvas" width="900" height="900"></canvas>
 
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas')
@@ -45,6 +45,44 @@
         ctx.closePath()
         ctx.stroke()
         ctx.fill()
+
+
+        // ctx.font = "50px serif";
+        // ctx.strokeStyle = "red"
+        // ctx.strokeText("Hello world", 210, 90, 290)
+
+        // ctx.strokeStyle = "green"
+        // ctx.strokeText("Hello world", 215, 100, 290);
+
+        ctx.beginPath();
+        ctx.arc(500, 500, 50, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "white"
+        ctx.beginPath();
+        ctx.arc(500, 500, 30, 0, 1 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "white"
+        ctx.beginPath();
+        ctx.arc(520, 480, 10, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "white"
+        ctx.beginPath();
+        ctx.arc(480, 480, 10, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "black"
+        ctx.beginPath();
+        ctx.arc(520, 480, 2, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "black"
+        ctx.beginPath();
+        ctx.arc(480, 480, 2, 0, 2 * Math.PI);
+        ctx.stroke();
+
 
 
 
