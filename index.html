@@ -17,28 +17,27 @@
         const ctx = my_canvas.getContext('2d')
 
         my_canvas.addEventListener("click", (event) => {
+            ctx.fillStyle = getRandomColor();
             ctx.beginPath()
             ctx.arc(event.x, event.y, 50, 0, 2 * Math.PI)
-            ctx.stroke()
+            ctx.fill()
         });
 
-        function getRandomColor(){
-            let trans = "0.5"
-            let color = "rgba("
-
-            for(let i = 0; i<3; i++){
-                color = Math.floor(Math.random() * 255) + ","
+        function getRandomColor() {
+            var trans = '0.5'; // 50% transparency
+            var color = 'rgba(';
+            for (var i = 0; i < 3; i++) {
+                color += Math.floor(Math.random() * 255) + ',';
             }
-
-            color += trans + ")"
-            return color
+            color += trans + ')'; // add the transparency
+            return color;
         }
 
-        my_canvas.addEventListener("mouseover", () =>{
-            ctx.fillStyle = getRandomColor();
-            ctx.fill()
-        })
-        
+        // my_canvas.addEventListener("mouseover", () =>{
+        //     ctx.fillStyle = getRandomColor();
+        //     ctx.fill()
+        // })
+
     </script>
     <script src="validaciones.js"></script>
 </body>
