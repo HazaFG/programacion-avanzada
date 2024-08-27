@@ -9,11 +9,13 @@
 <body>
     <h1>Programando en el salón</h1>
 
-    <canvas id="my_canvas" width="900" height="900"></canvas>
+    <canvas id="my_canvas" width="500" height="500"></canvas>
 
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
+
+
 
         // let clickeado = false; // Variable para rastrear si el ratón está presionado
 
@@ -68,6 +70,10 @@
         let y = 0
 
         document.onkeydown = function(e) {
+            ctx.fillStyle = "white"
+
+            ctx.fillRect(0, 0, 500, 500)
+            
             switch (e.keyCode) {
                 case 37:
                     console.log('left');
@@ -79,11 +85,13 @@
                     console.log('up');
                     ctx.fillStyle = getRandomColor()
                     ctx.fillRect(x, y-=10, 50, 50, 50)
+
                     break;
                 case 39:
                     console.log('right')
                     ctx.fillStyle = getRandomColor()
                     ctx.fillRect(x+=10, y, 50, 50, 50)
+
                     break;
                 case 40:
                     console.log('down');

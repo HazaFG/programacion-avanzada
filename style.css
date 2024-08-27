@@ -3,7 +3,7 @@ h1{
 }
 
 #my_canvas{
-    width: 900px;
-    height: 900px;
-    background-color: rgb(244, 243, 243);
+    width: 500px;
+    height: 500px;
+    background-color: white;
 }
