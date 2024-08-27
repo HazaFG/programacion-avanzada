@@ -55,6 +55,15 @@
 
         })
 
+        // Evento para dibujar una estela mientras el cursor se mueve sobre el canvas
+        my_canvas.addEventListener("mousemove", (event) => {
+            ctx.beginPath();
+            ctx.arc(event.offsetX, event.offsetY, 10, 0, 2 * Math.PI);
+            ctx.fill();
+        });
+
+
+
 
 
     </script>
