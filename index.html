@@ -57,13 +57,41 @@
         }
 
 
-        document.addEventListener("keydown", function(e){
-            ctx.fillStyle = getRandomColor()
-            let x = Math.random() * 600;
-            let y = Math.random() * 600;
+        // document.addEventListener("keydown", function(e){
+        //     ctx.fillStyle = getRandomColor()
+        //     let x = Math.random() * 600;
+        //     let y = Math.random() * 600;
 
-            ctx.fillRect(x, y, 50, 50, 50)
-        })
+        //     ctx.fillRect(x, y, 50, 50, 50)
+        // })
+        let x = 0;
+        let y = 0
+
+        document.onkeydown = function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    console.log('left');
+                    ctx.fillStyle = getRandomColor()
+
+                    ctx.fillRect(x-=10, y, 50, 50, 50)
+                    break;
+                case 38:
+                    console.log('up');
+                    ctx.fillStyle = getRandomColor()
+                    ctx.fillRect(x, y-=10, 50, 50, 50)
+                    break;
+                case 39:
+                    console.log('right')
+                    ctx.fillStyle = getRandomColor()
+                    ctx.fillRect(x+=10, y, 50, 50, 50)
+                    break;
+                case 40:
+                    console.log('down');
+                    ctx.fillStyle = getRandomColor()
+                    ctx.fillRect(x, y+=10, 50, 50, 50)
+                    break;
+            }  
+        };
 
 
     </script>
