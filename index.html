@@ -15,29 +15,57 @@
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
 
-        let clickeado = false; // Variable para rastrear si el ratón está presionado
+        // let clickeado = false; // Variable para rastrear si el ratón está presionado
 
-        // Establece el color negro para los puntitos
-        ctx.fillStyle = 'black';
+        // // Establece el color negro para los puntitos
+        // ctx.fillStyle = 'black';
 
-        // Evento mousedown: Comienza a dibujar cuando se presiona el botón del ratón
-        my_canvas.addEventListener('mousedown', () => {
-            clickeado = true;
-        });
+        // // Evento mousedown: Comienza a dibujar cuando se presiona el botón del ratón
+        // my_canvas.addEventListener('mousedown', () => {
+        //     clickeado = true;
+        // });
 
-        // Evento mouseup: Deja de dibujar cuando se suelta el botón del ratón
-        my_canvas.addEventListener('mouseup', () => {
-            clickeado = false;
-        });
+        // // Evento mouseup: Deja de dibujar cuando se suelta el botón del ratón
+        // my_canvas.addEventListener('mouseup', () => {
+        //     clickeado = false;
+        // });
 
-        // Evento mousemove: Dibuja una estela de puntitos si el ratón está presionado
-        my_canvas.addEventListener('mousemove', (event) => {
-            if (clickeado) {
-                ctx.beginPath();
-                ctx.arc(event.offsetX, event.offsetY, 3, 0, 2 * Math.PI);
-                ctx.fill();
+        // // Evento mousemove: Dibuja una estela de puntitos si el ratón está presionado
+        // my_canvas.addEventListener('mousemove', (event) => {
+        //     if (clickeado) {
+        //         ctx.beginPath();
+        //         ctx.arc(event.offsetX, event.offsetY, 3, 0, 2 * Math.PI);
+        //         ctx.fill();
+        //     }
+        // });
+
+                // Evento para dibujar una estela mientras el cursor se mueve sobre el canvas
+        // my_canvas.addEventListener("mousemove", (event) => {
+        //     ctx.beginPath();
+        //     ctx.arc(event.offsetX, event.offsetY, 10, 0, 2 * Math.PI);
+        //     ctx.fill();
+        // });
+
+        function getRandomColor() {
+            var trans = '0.5'; // 50% transparency
+            var color = 'rgba(';
+            for (var i = 0; i < 3; i++) {
+                color += Math.floor(Math.random() * 255) + ',';
             }
-        });
+            color += trans + ')'; // add the transparency
+            return color;
+        }
+
+
+        document.addEventListener("keydown", function(e){
+            ctx.fillStyle = getRandomColor()
+            let x = Math.random() * 600;
+            let y = Math.random() * 600;
+
+            ctx.fillRect(x, y, 50, 50, 50)
+        })
+
+
     </script>
     <script src="validaciones.js"></script>
 </body>
