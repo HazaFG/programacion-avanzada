@@ -7,65 +7,37 @@
     <title>Clase</title>
 </head>
 <body>
-    <h1>Programando en el salon</h1>
-
+    <h1>Programando en el salón</h1>
 
     <canvas id="my_canvas" width="900" height="900"></canvas>
 
     <script type="text/javascript">
-        const my_canvas = document.getElementById('my_canvas')
-        const ctx = my_canvas.getContext('2d')
+        const my_canvas = document.getElementById('my_canvas');
+        const ctx = my_canvas.getContext('2d');
 
-        var bandera = 0
+        let clickeado = false; // Variable para rastrear si el ratón está presionado
 
-        ctx.fillStyle = getRandomColor();
-        my_canvas.addEventListener("click", (event) => {
+        // Establece el color negro para los puntitos
+        ctx.fillStyle = 'black';
 
-            if(bandera === 0){
-                ctx.beginPath()
-                ctx.arc(event.x, event.y, 50, 0, 2 * Math.PI)
-                ctx.fill()
-
-            }else{
-                ctx.fillStyle = getRandomColor();
-                ctx.fillRect(event.x, event.y, 50, 100, 100)
-            }
-
+        // Evento mousedown: Comienza a dibujar cuando se presiona el botón del ratón
+        my_canvas.addEventListener('mousedown', () => {
+            clickeado = true;
         });
 
-        function getRandomColor() {
-            var trans = '0.5'; // 50% transparency
-            var color = 'rgba(';
-            for (var i = 0; i < 3; i++) {
-                color += Math.floor(Math.random() * 255) + ',';
-            }
-            color += trans + ')'; // add the transparency
-            return color;
-        }
-
-        my_canvas.addEventListener("mouseover", () =>{
-
-            if(bandera === 0){
-                bandera = 1
-            }else{
-                bandera = 0
-            }
-
-            ctx.fillStyle = getRandomColor();
-
-        })
-
-        // Evento para dibujar una estela mientras el cursor se mueve sobre el canvas
-        my_canvas.addEventListener("mousemove", (event) => {
-            ctx.beginPath();
-            ctx.arc(event.offsetX, event.offsetY, 10, 0, 2 * Math.PI);
-            ctx.fill();
+        // Evento mouseup: Deja de dibujar cuando se suelta el botón del ratón
+        my_canvas.addEventListener('mouseup', () => {
+            clickeado = false;
         });
 
-
-
-
-
+        // Evento mousemove: Dibuja una estela de puntitos si el ratón está presionado
+        my_canvas.addEventListener('mousemove', (event) => {
+            if (clickeado) {
+                ctx.beginPath();
+                ctx.arc(event.offsetX, event.offsetY, 3, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        });
     </script>
     <script src="validaciones.js"></script>
 </body>
