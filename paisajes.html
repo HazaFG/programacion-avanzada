@@ -9,60 +9,71 @@
 <body>
     <h1>Programando en el salón</h1>
 
-    <canvas id="my_canvas" width="500" height="200"></canvas>
+    <canvas id="my_canvas" width="500" height="500"></canvas>
     <div id="mydiv" style="position:relative;">Some text.</div>
 
 
     <script type="text/javascript">
 
-        const my_canvas = document.getElementById('my_canvas');
-        const ctx = my_canvas.getContext('2d');
+    const my_canvas = document.getElementById('my_canvas');
+    const ctx = my_canvas.getContext('2d');
 
-        // Fondo azul claro
-        ctx.fillStyle = '#ADD8E6';
-        ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
+    // Fondo azul claro
+    ctx.fillStyle = '#87CEEB';
+    ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
 
-        // Función para dibujar un cuadrado con bordes oscuros
-        function drawSquare(x, y, width, height, color) {
-            ctx.fillStyle = color;
-            ctx.fillRect(x, y, width, height);
+    // Suelo verde
+    ctx.fillStyle = '#32CD32';
+    ctx.fillRect(0, 400, my_canvas.width, 100);
 
-            // Bordes oscuros
-            ctx.strokeStyle = '#000000';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(x, y, width, height);
+    // monatana grande
+    ctx.fillStyle = '#A9A9A9';
+    ctx.beginPath();
+    ctx.moveTo(100, 400);
+    ctx.lineTo(250, 200);
+    ctx.lineTo(400, 400);
+    ctx.closePath();
+    ctx.fill();
 
-            // Tornillos
-            const screwRadius = 4;
-            ctx.fillStyle = '#000000';
-            ctx.beginPath();
-            ctx.arc(x + 5, y + 5, screwRadius, 0, 2 * Math.PI);
-            ctx.fill();
-        }
+    // Montaña más pequeña
+    ctx.fillStyle = '#808080';
+    ctx.beginPath();
+    ctx.moveTo(250, 400);
+    ctx.lineTo(350, 300);
+    ctx.lineTo(450, 400);
+    ctx.closePath();
+    ctx.fill();
 
-        //tuberias verdes
-        drawSquare(50, 100, 50, 50, '#FFA07A');  //  naranja pequeño
-        drawSquare(150, 50, 100, 150, '#87CEEB');  //  azul grande
-        drawSquare(270, 80, 100, 100, '#FA8072');  // rosa
+    //casita
 
-        // tuboverde
-        ctx.fillStyle = '#32CD32';
-        ctx.fillRect(400, 150, 50, 100);
+    ctx.fillStyle = '#B22222';
+    ctx.fillRect(50, 300, 100, 100);
 
-        ctx.fillStyle = '#006400';
-        ctx.fillRect(395, 140, 60, 20); // Parte superior más oscura
+    ctx.fillStyle = '#8B4513';
+    ctx.beginPath();
+    ctx.moveTo(50, 300);
+    ctx.lineTo(100, 250);
+    ctx.lineTo(150, 300);
+    ctx.closePath();
+    ctx.fill();
 
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = 3;
-        ctx.strokeRect(395, 140, 60, 20);
-        ctx.strokeRect(400, 150, 50, 100);
+    // Ventana de la casa
+    ctx.fillStyle = '#ADD8E6';
+    ctx.fillRect(80, 330, 40, 40);
 
-        // Más cuadrados pequeños en el cielo
-        drawSquare(300, 30, 50, 50, '#FFA07A');
-        drawSquare(400, 20, 50, 50, '#FFA07A');
+    // Sol
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.arc(450, 50, 30, 0, 2 * Math.PI);
+    ctx.fill();
 
-
-
+    // Nubes
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.arc(300, 100, 20, 0, 2 * Math.PI);
+    ctx.arc(330, 100, 20, 0, 2 * Math.PI);
+    ctx.arc(315, 80, 20, 0, 2 * Math.PI);
+    ctx.fill();
 
 
     </script>
