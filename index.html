@@ -58,10 +58,47 @@
             }  
         };
 
+        class Rectangulo{
+            constructor(x, y, w, h, s, c){
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.s = s;
+                this.c = c;
+            }
+
+            colision(pastilla){
+                if(this.x < pastilla.x + pastilla.y &&
+                   this.x + this.w > pastilla.x &&
+                   this.y < pastilla.y + pastilla.h && 
+                   this.y + this.h > pastilla.y)
+                   { 
+
+                    pastilla.x = Math.random()*300;
+                    pastilla.y = Math.random()*300;
+
+                   }
+                return true;
+            }
+        }
+
+        let rectangulo = new Rectangulo(0, 0, 50, 50)
+        let pastilla = new Rectangulo(Math.random()*400, Math.random()*400, 20, 20)
+
+
         function pintar(){
             update()
+            ctx.fillStyle = "purple"
+            ctx.fillRect(rectangulo.x, rectangulo.y, rectangulo.w, rectangulo.h)
+
+
             ctx.fillStyle = getRandomColor()
-            ctx.fillRect(x, y, 50, 50)
+            rectangulo.colision(pastilla)
+            ctx.fillRect(pastilla.x, pastilla.y, pastilla.w, pastilla.h)
+
+
+
             requestAnimationFrame(pintar); 
         }
 
@@ -70,42 +107,32 @@
             ctx.fillRect(0, 0, 500, 500)
             switch(direccion){
                 case "left":
-                    x-=10
-                    if(x < -20){
-                        x = 500
+                    rectangulo.x-=10
+                    if(rectangulo.x < -20){
+                        rectangulo.x = 500
                     }
                 break;
 
                 case "up":
-                    y-=10
-                    if(y < -20){
-                        y = 500
+                    rectangulo.y-=10
+                    if(rectangulo.y < -20){
+                        rectangulo.y = 500
                     }
                 break;
 
                 case "right":
-                    if(x > 500)
-                        x = 0
-                    x+=10
-                break;
-
-                case "velocidad":
-                    if(x > 500)
-                        x = 0
-                    x+=20
+                    if(rectangulo.x > 500)
+                        rectangulo.x = 0
+                    rectangulo.x+=10
                 break;
 
                 case "down":
-                    y+=10
-                    if(y > 500)
-                        y = 0
+                    rectangulo.y+=10
+                    if(rectangulo.y > 500)
+                        rectangulo.y = 0
                 break;
             }
-         
         }
-
-        //Commit para ejercicio 27
-
         requestAnimationFrame(pintar)
 
 
