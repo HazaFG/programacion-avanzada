@@ -68,23 +68,54 @@
                 this.c = c;
             }
 
-            colision(pastilla){
-                if(this.x < pastilla.x + pastilla.y &&
-                   this.x + this.w > pastilla.x &&
-                   this.y < pastilla.y + pastilla.h && 
-                   this.y + this.h > pastilla.y)
+            colision(objeto){
+                if(this.x < objeto.x + objeto.y &&
+                   this.x + this.w > objeto.x &&
+                   this.y < objeto.y + objeto.h && 
+                   this.y + this.h > objeto.y)
                    { 
 
-                    pastilla.x = Math.random()*300;
-                    pastilla.y = Math.random()*300;
+                    objeto.x = Math.random()*300;
+                    objeto.y = Math.random()*300;
 
                    }
                 return true;
+            }
+
+            colisionPared(pared){
+
+                if(this.x < pared.x + pared.y &&
+                   this.x + this.w > pared.x &&
+                   this.y < pared.y + pared.h && 
+                   this.y + this.h > pared.y)
+                   { 
+
+                    switch(direccion){
+                        case "left":
+                            rectangulo.x+=10
+                        break;
+
+                        case "up":
+                            rectangulo.y+=10
+                        break;
+
+                        case "right":
+                            rectangulo.x-=10
+                        break;
+
+                        case "down":
+                            rectangulo.y-=10
+                        break;
+                    }
+                   }
+                return true;
+
             }
         }
 
         let rectangulo = new Rectangulo(0, 0, 50, 50)
         let pastilla = new Rectangulo(Math.random()*400, Math.random()*400, 20, 20)
+        let pared = new Rectangulo(150, 400, 200, 20)
 
 
         function pintar(){
@@ -98,6 +129,9 @@
             ctx.fillRect(pastilla.x, pastilla.y, pastilla.w, pastilla.h)
 
 
+            ctx.fillStyle = "Black"
+            rectangulo.colisionPared(pared)
+            ctx.fillRect(pared.x, pared.y, pared.w, pared.h)
 
             requestAnimationFrame(pintar); 
         }
