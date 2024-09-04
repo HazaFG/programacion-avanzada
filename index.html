@@ -29,6 +29,7 @@
 
         let x = 0;
         let y = 0;
+        let paredes = []
 
         let direccion = ""
         velocidad = x * 2;
@@ -115,7 +116,9 @@
 
         let rectangulo = new Rectangulo(0, 0, 50, 50)
         let pastilla = new Rectangulo(Math.random()*400, Math.random()*400, 20, 20)
-        let pared = new Rectangulo(150, 400, 200, 20)
+
+        paredes.push(new Rectangulo(150, 400, 200, 20, 0, getRandomColor()))
+        paredes.push(new Rectangulo(150, 200, 200, 20, 0, getRandomColor()))
 
 
         function pintar(){
@@ -128,10 +131,17 @@
             rectangulo.colision(pastilla)
             ctx.fillRect(pastilla.x, pastilla.y, pastilla.w, pastilla.h)
 
+            paredes.forEach(function(pared, index){
+                ctx.fillStyle = getRandomColor()
+                ctx.fillStyle = "Black"
+                ctx.fillRect(pared.x, pared.y, pared.w, pared.h)
+                rectangulo.colisionPared(pared)
+            })
 
-            ctx.fillStyle = "Black"
-            rectangulo.colisionPared(pared)
-            ctx.fillRect(pared.x, pared.y, pared.w, pared.h)
+
+            // ctx.fillStyle = "Black"
+            // rectangulo.colisionPared(parede)
+            // ctx.fillRect(parede.x, parede.y, parede.w, parede.h)
 
             requestAnimationFrame(pintar); 
         }
