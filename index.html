@@ -12,12 +12,12 @@
     <canvas id="my_canvas" width="500" height="500"></canvas>
     <div id="mydiv" style="position:relative;">Some text.</div>
 
-
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
 
-        
+        const colisionSonido = new Audio('./pastilla.mp3');  
+
         function getRandomColor() {
             var trans = '0.5'; // 50% transparency
             var color = 'rgba(';
@@ -27,40 +27,31 @@
             color += trans + ')'; // add the transparency
             return color;
         }
-        
+
         let x = 0;
         let y = 0;
         let paredes = []
         var pausa = false
         let score = 0;
-        
 
         let direccion = ""
         velocidad = x * 2;
 
         document.onkeydown = function(e) {
-            
             switch (e.keyCode) {
                 case 37:
-                    // Left
                     direccion = "left"
                     pausa = false
-  
                     break;
                 case 38:
-                    // Up
                     direccion = "up"
                     pausa = false
-
                     break;
                 case 39:
-                    //Right
                     direccion = "right"
                     pausa = false
-
                     break;
                 case 40:
-                    // Down
                     direccion = "down"
                     pausa = false
                     break;
@@ -70,8 +61,8 @@
             }  
         };
 
-        class Rectangulo{
-            constructor(x, y, w, h, s, c){
+        class Rectangulo {
+            constructor(x, y, w, h, s, c) {
                 this.x = x;
                 this.y = y;
                 this.w = w;
@@ -80,140 +71,111 @@
                 this.c = c;
             }
 
-            colision(objeto){
-                if(this.x < objeto.x + objeto.w &&
-                   this.x + this.w > objeto.x &&
-                   this.y < objeto.y + objeto.h && 
-                   this.y + this.h > objeto.y)
-                   { 
+            colision(objeto) {
+                if (this.x < objeto.x + objeto.w &&
+                    this.x + this.w > objeto.x &&
+                    this.y < objeto.y + objeto.h && 
+                    this.y + this.h > objeto.y) { 
 
-                    objeto.x = Math.random()*300;
-                    objeto.y = Math.random()*300;
-                    score+=1
 
-                   }
+                    // Si hay colisión, reproducir el sonido
+                    colisionSonido.play();
+
+                    objeto.x = Math.random() * 300;
+                    objeto.y = Math.random() * 300;
+                    score += 1;
+                }
                 return true;
             }
 
-            colisionPared(pared){
-
-                if(this.x < pared.x + pared.y &&
-                   this.x + this.w > pared.x &&
-                   this.y < pared.y + pared.h && 
-                   this.y + this.h > pared.y)
-                   { 
-
-                    switch(direccion){
+            colisionPared(pared) {
+                if (this.x < pared.x + pared.y &&
+                    this.x + this.w > pared.x &&
+                    this.y < pared.y + pared.h && 
+                    this.y + this.h > pared.y) { 
+                    switch(direccion) {
                         case "left":
-                            rectangulo.x+=10
+                            rectangulo.x += 10
                         break;
-
                         case "up":
-                            rectangulo.y+=10
+                            rectangulo.y += 10
                         break;
-
                         case "right":
-                            rectangulo.x-=10
+                            rectangulo.x -= 10
                         break;
-
                         case "down":
-                            rectangulo.y-=10
+                            rectangulo.y += 10
                         break;
                     }
-                   }
-                return true;
-
-            }
-        }
-
-        let rectangulo = new Rectangulo(0, 0, 50, 50)
-        let pastilla = new Rectangulo(Math.random()*400, Math.random()*400, 20, 20)
-
-        paredes.push(new Rectangulo(150, 400, 200, 20, 0, getRandomColor()))
-        paredes.push(new Rectangulo(150, 200, 200, 20, 0, getRandomColor()))
-
-
-        function pintar(){
-
-
-            // if(pausa){
-            //     ctx.fillStyle = "rgba(255, 100, 51)"
-            //     ctx.fillRect(0,0, 500, 500)
-            //     console.log("hola")
-            // }
-
-            update()
-            ctx.fillStyle = "purple"
-            ctx.fillRect(rectangulo.x, rectangulo.y, rectangulo.w, rectangulo.h)
-
-
-            ctx.fillStyle = getRandomColor()
-            rectangulo.colision(pastilla)
-
-            ctx.fillRect(pastilla.x, pastilla.y, pastilla.w, pastilla.h)
-
-            paredes.forEach(function(pared, index){
-                ctx.fillStyle = getRandomColor()
-                ctx.fillStyle = "Black"
-                ctx.fillRect(pared.x, pared.y, pared.w, pared.h)
-                rectangulo.colisionPared(pared)
-            })
-
-            ctx.strokeText(`score: ${score}` , 50, 50) 
-            // ctx.fillStyle = "Black"
-            // rectangulo.colisionPared(parede)
-            // ctx.fillRect(parede.x, parede.y, parede.w, parede.h)
-
-            requestAnimationFrame(pintar); 
-        }
-
-
-        function update(){
-            ctx.fillStyle = "gray"
-            ctx.fillRect(0, 0, 500, 500)
-
-            if(!pausa){
-                switch(direccion){
-                    case "left":
-                        rectangulo.x-=10
-                        if(rectangulo.x < -20){
-                            rectangulo.x = 500
-                        }
-                    break;
-    
-                    case "up":
-                        rectangulo.y-=10
-                        if(rectangulo.y < -20){
-                            rectangulo.y = 500
-                        }
-                    break;
-    
-                    case "right":
-                        if(rectangulo.x > 500)
-                            rectangulo.x = 0
-                        rectangulo.x+=10
-                    break;
-    
-                    case "down":
-                        rectangulo.y+=10
-                        if(rectangulo.y > 500)
-                            rectangulo.y = 0
-                    break;
-
-                    case "pausa":
-                        pausa = false
                 }
-            }else{
-                ctx.fillStyle = "rgb(255, 100, 51, 0.5)"
-                ctx.fillRect(0, 0, 500, 500)  
-                ctx.strokeText("PAUSA", 220, 250) 
+                return true;
+            }
+        }
+
+        let rectangulo = new Rectangulo(0, 0, 50, 50);
+        let pastilla = new Rectangulo(Math.random() * 400, Math.random() * 400, 20, 20);
+        let img = new Image(); 
+        img.src = './nave.png'; 
+
+        paredes.push(new Rectangulo(150, 400, 200, 20, 0, getRandomColor()));
+        paredes.push(new Rectangulo(150, 200, 200, 20, 0, getRandomColor()));
+
+        function pintar() {
+            update();
+            
+            // Dibuja la imagen en lugar del rectángulo
+            if (img.complete) {
+                ctx.drawImage(img, rectangulo.x, rectangulo.y, rectangulo.w, rectangulo.h);
+            } else {
+                img.onload = function() {
+                    ctx.drawImage(img, rectangulo.x, rectangulo.y, rectangulo.w, rectangulo.h);
+                }
             }
 
+            ctx.fillStyle = getRandomColor();
+            rectangulo.colision(pastilla);
+            ctx.fillRect(pastilla.x, pastilla.y, pastilla.w, pastilla.h);
+
+            paredes.forEach(function(pared, index) {
+                ctx.fillStyle = "Black";
+                ctx.fillRect(pared.x, pared.y, pared.w, pared.h);
+                rectangulo.colisionPared(pared);
+            });
+
+            ctx.strokeText(`score: ${score}`, 50, 50);
+            requestAnimationFrame(pintar);
         }
-        requestAnimationFrame(pintar)
 
+        function update() {
+            ctx.fillStyle = "gray";
+            ctx.fillRect(0, 0, 500, 500);
 
+            if (!pausa) {
+                switch(direccion) {
+                    case "left":
+                        rectangulo.x -= 5;
+                        if (rectangulo.x < -20) rectangulo.x = 500;
+                    break;
+                    case "up":
+                        rectangulo.y -= 5;
+                        if (rectangulo.y < -20) rectangulo.y = 500;
+                    break;
+                    case "right":
+                        if (rectangulo.x > 500) rectangulo.x = 0;
+                        rectangulo.x += 5;
+                    break;
+                    case "down":
+                        rectangulo.y += 5;
+                        if (rectangulo.y > 500) rectangulo.y = 0;
+                    break;
+                }
+            } else {
+                ctx.fillStyle = "rgb(255, 100, 51, 0.5)";
+                ctx.fillRect(0, 0, 500, 500);
+                ctx.strokeText("PAUSA", 220, 250);
+            }
+        }
+        requestAnimationFrame(pintar);
     </script>
-    <script src="validaciones.js"></script>
 </body>
 </html>
